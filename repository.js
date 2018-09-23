@@ -11,15 +11,11 @@ const instance = axios.create({
 // Запрос списка групп в ЮГУ
 instance.get(`handbook/groups-by-institution?institutionId=${UNIVER_ID}`).then(reponse => {
   groups = reponse.data.data
-  console.log(groups)
-}).catch(error => {
-})
+}).catch(console.log)
 
 // Запрос расписания по id группы
 module.exports.getSchedule = async function (...args) {
-
   let group = groups.find(x => x.name.indexOf(args[0]) !== -1)
-
   let response = await instance.get(`schedule/group`, {
     params: {
       groupId: group.id,

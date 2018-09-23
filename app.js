@@ -35,7 +35,24 @@ updates.on('message', async (context, next) => {
     return
   }
 
-  repo.getSchedule(context.text, Utils.currentDate, Utils.currentDate).then(dates => {
+  /*repo.getSchedule(context.text, Utils.today, Utils.today).then(dates => {
+    context.send(format.scheduleToText(dates))
+  }).catch(() => {
+    context.send('Сорян, такой группы я не нашел 🤔')
+  })*/
+  await next()
+})
+
+updates.hear(/#(.+) (.+)/i, async (ctx, next) => {
+  repo.getSchedule(ctx.text.replace('#', ''), Utils.today, Utils.today).then(dates => {
+    ctx.send(format.scheduleToText(dates))
+  }).catch(() => {
+    ctx.send('Сорян, такой группы я не нашел 🤔')
+  })
+})
+
+updates.hear(/^\/завтра|tomorrow (.+)/i, async (context, next) => {
+  repo.getSchedule(context.text, Utils.tommorow, Utils.tommorow).then(dates => {
     context.send(format.scheduleToText(dates))
   }).catch(() => {
     context.send('Сорян, такой группы я не нашел 🤔')
@@ -70,7 +87,7 @@ run().catch(console.error)
 
 bot.on('update', update => {
   // if (!isCommand(update.object.text))
-    repo.getSchedule(update.object.text, Utils.currentDate, Utils.currentDate).then(dates => {
+    repo.getSchedule(update.object.text, Utils.today, Utils.today).then(dates => {
       bot.send(format.scheduleToText(dates), update.object.from_id).catch(error => console.error(error))
       console.log('')
     }).catch(() => {

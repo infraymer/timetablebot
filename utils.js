@@ -20,4 +20,6 @@ module.exports.getType = function (id) {
   else return icon
 }
 
-module.exports.currentDate = date.format(new Date(), 'YYYY-MM-DD')
+module.exports.today = date.format(new Date(), 'YYYY-MM-DD')
+
+module.exports.tommorow = date.format(date.addDays(new Date(), 1), 'YYYY-MM-DD')
