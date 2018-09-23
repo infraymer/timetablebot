@@ -10,7 +10,7 @@ function timeReformat(time) {
 module.exports.scheduleToText = function (dates) {
   let text = ''
 
-  if (dates.length === 0) return 'На сегодня занятий нет! 🎉🎊🎈'
+  if (dates.length === 0) return 'Пар нет! 🎉🎊🎈'
 
   for (let i in dates) {
     let d = Date.format(Date.parse(i, 'YYYY-MM-DD'), 'dddd, DD MMMM')
