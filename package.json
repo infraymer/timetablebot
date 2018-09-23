@@ -1,0 +1,17 @@
+{
+  "name": "timetablebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "date-and-time": "^0.6.2",
+    "vk-io": "^4.0.0-rc.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "infraymer",
+  "license": "ISC"
+}
